@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+  <meta charset="utf-8" />
+  <title>AskSamoylov</title>
+
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,600;0,700;0,900;1,600;1,700&display=swap"
+    rel="stylesheet">
+  <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../static/css/my.css" rel="stylesheet" />
+
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+  <header>
+
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-navbar">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="/">AskSamoylov</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+          aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"></button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <form class="d-flex search-container" style="padding-left: 10px; width: 50%">
+            <input class="form-control me-2 search-input" type="search" placeholder="Search..." aria-label="Search" />
+          </form>
+          <button type="button" class="btn btn-success ask-button">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#637067" class="bi bi-pencil"
+              viewBox="0 0 20 20">
+              <path
+                d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5L13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175l-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z">
+              </path>
+            </svg>
+            <span class="ask-button-text">ASK</span>
+          </button>
+        </div>
+
+        <img src="../static/img/my-avatar.jpg" alt="Your Avatar" class="current-user-avatar" />
+        <div style="margin: 0px 15px">
+          <div class="user-name-and-funcs">
+            Alexey
+            <a href="#logout" class="text-decoration-none" style="margin-left: 3px">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="#003eb6"
+                class="bi bi-box-arrow-right" viewBox="0 0 18 18">
+                <path fill-rule="evenodd"
+                  d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z">
+                </path>
+                <path fill-rule="evenodd"
+                  d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z">
+                </path>
+              </svg>
+            </a>
+          </div>
+          <div class="settings">
+            <a class="link-color" href="#settings">settings</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+  <!-- Begin page content -->
+  <main class="flex-shrink-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-8" style="padding-left: 4%; padding-top: 100px">
+
+          <div class="row question">
+            <div style="margin-bottom: 30px">
+              <span class="sort-categories">New Question</span>
+            </div>
+
+            <form>
+              <div class="d-flex ms-5 mb-3">
+                <label for="inputTitle" class="col-sm-1 col-form-label col-form-label-lg"
+                  style="font-weight: 600;">Title</label>
+                <div class="d-flex w-100">
+                  <input type="text" class="form-control" placeholder="How to declare an array in Python?"
+                    id="inputTitle">
+                </div>
+              </div>
+              <div class="d-flex ms-5 mb-3">
+                <label for="inputText" class="col-sm-1 col-form-label col-form-label-lg"
+                  style="font-weight: 600;">Text</label>
+                <div class="d-flex w-100">
+                  <textarea class="form-control" rows="10" placeholder="Enter your question" id="inputText"></textarea>
+                </div>
+              </div>
+              <div class="d-flex ms-5 mb-3">
+                <label for="inputTags" class="col-sm-1 col-form-label col-form-label-lg"
+                  style="font-weight: 600;">Tags</label>
+                <div class="d-flex w-100">
+                  <input type="text" class="form-control" placeholder="python" id="inputTags">
+                </div>
+              </div>
+              <div class="d-flex mb-3 w-100 justify-content-end">
+                <div class="d-flex">
+                  <button type="submit" class="btn btn-success btn-lg">Create Question</button>
+                </div>
+
+              </div>
+            </form>
+
+          </div>
+        </div>
+
+
+
+        <div class="col-4" style="padding-left: 4%; padding-top: 100px">
+
+          <div>
+            <span class="top-categories">Popular Tags</span>
+            <div class="d-flex align-items-end mt-3">
+              <div class="d-flex me-3 text-success">
+                Techopark
+              </div>
+              <div class="d-flex me-3 text-danger fs-4">
+                python
+              </div>
+              <div class="d-flex me-3">
+                MySQL
+              </div>
+            </div>
+            <div class="d-flex align-items-end">
+              <div class="d-flex me-3">
+                VSCode
+              </div>
+              <div class="d-flex me-3 fs-4 text-success">
+                Ubuntu
+              </div>
+              <div class="d-flex me-3 text-success">
+                schemes
+              </div>
+            </div>
+            <div class="d-flex align-items-end">
+              <div class="d-flex me-3 text-danger fs-4">
+                django
+              </div>
+              <div class="d-flex me-3">
+                Chrome
+              </div>
+              <div class="d-flex me-3">
+                perl
+              </div>
+            </div>
+          </div>
+
+
+          <div class="mt-5">
+            <span class="top-categories">Top Members</span>
+            <div class="mb-2 mt-3">
+              <a class="top-members" href="#">Tim Roberts</a>
+            </div>
+            <div class="mb-2">
+              <a class="top-members" href="#">unutbu</a>
+            </div>
+            <div class="mb-2">
+              <a class="top-members" href="#">Alex Martelli</a>
+            </div>
+            <div class="mb-2">
+              <a class="top-members" href="#">jezrael</a>
+            </div>
+            <div class="mb-2">
+              <a class="top-members" href="#">Sven Marnach</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer mt-auto py-2">
+    <div class="container">
+      <span class="footer-text">Made by Alexey Samoylov</span>
+    </div>
+  </footer>
+
+
+  <script src="../static/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
