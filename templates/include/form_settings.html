@@ -1,0 +1,53 @@
+{% load static %}
+
+<div class="row question">
+    <div style="margin-bottom: 30px">
+        <span class="sort-categories" style="font-weight: 300; margin-right: 10px;">Settings:</span><span
+            class="sort-categories">Alexey</span>
+    </div>
+
+    <form>
+        <div class="d-flex ms-5 mb-3">
+            <label for="inputLogin" class="col-sm-2 col-form-label col-form-label-lg"
+                   style="font-weight: 600;">Login</label>
+            <div class="d-flex w-100">
+                <input type="text" class="form-control" placeholder="alex.samoylov" id="inputLogin" disabled>
+            </div>
+        </div>
+        <div class="d-flex ms-5 mb-3">
+            <label for="inputUsername" class="col-sm-2 col-form-label col-form-label-lg"
+                   style="font-weight: 600;">Username</label>
+            <div class="d-flex w-100">
+                <input type="text" class="form-control" placeholder="Alexey" id="inputUsername">
+            </div>
+        </div>
+        <div class="d-flex ms-5 mb-2">
+            <label for="inputEmail" class="col-sm-2 col-form-label col-form-label-lg"
+                   style="font-weight: 600;">Email</label>
+            <div class="d-flex w-100">
+                <input type="email" class="form-control" placeholder="alexey@mail.ru" id="inputEmail">
+            </div>
+        </div>
+        <div class="d-flex ms-5 mb-3">
+            <label for="inputAvatar" class="col-sm-2 col-form-label col-form-label-lg"
+                   style="font-weight: 600;">Avatar</label>
+            <div class="d-flex flex-column">
+                <div style="margin-left: 5px; margin-top: 20px;">
+                    <img src="{% static "img/my-avatar.jpg" %}" class="current-user-avatar" width="200"
+                         alt="Your avatar"/>
+                </div>
+                <div class="d-flex mt-3">
+                    <input type="file" class="form-control" id="inputAvatar">
+                </div>
+            </div>
+        </div>
+        <div class="d-flex mb-3 ms-5">
+            <div class="col-sm-2"></div>
+            <div class="d-flex">
+                <button type="submit" class="btn btn-success btn-lg">Save</button>
+            </div>
+
+        </div>
+    </form>
+
+</div>

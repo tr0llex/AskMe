@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" class="h-100">
+
+<head>
+    <meta charset="utf-8"/>
+    <title>AskSamoylov</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+            href="https://fonts.googleapis.com/css2?family=Mulish:ital,wght@0,300;0,400;0,600;0,700;0,900;1,600;1,700&display=swap"
+            rel="stylesheet">
+    <link href="{% static "css/bootstrap.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "css/my.css" %}" rel="stylesheet"/>
+
+    <script src="{% static "js/bootstrap.bundle.min.js" %}"></script>
+</head>
+
+<body class="d-flex flex-column h-100">
+
+{% include "include/header.html" %}
+
+<main class="flex-shrink-0">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-8" style="padding-left: 4%; padding-top: 100px">
+
+                {% block questions_title %}
+                {% endblock questions_title %}
+
+                {% block content %}
+                {% endblock content %}
+
+                {% block pagination %}
+                {% endblock pagination %}
+            </div>
+
+
+            <div class="col-4"
+                 style="padding-left: 4%; padding-top:{% block padding_side %}{% endblock padding_side %}">
+
+                {% include "include/side_column.html" %}
+
+            </div>
+        </div>
+    </div>
+</main>
+
+{% include "include/footer.html" %}
+
+</body>
+
+</html>
