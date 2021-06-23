@@ -1,56 +1,37 @@
+{% load static %}
+
 <div>
     <span class="top-categories">Popular Tags</span>
-    <div class="d-flex align-items-end mt-3">
-        <div class="d-flex me-3 text-success">
-            Techopark
-        </div>
-        <div class="d-flex me-3 text-danger fs-4">
-            python
-        </div>
-        <div class="d-flex me-3">
-            MySQL
-        </div>
-    </div>
-    <div class="d-flex align-items-end">
-        <div class="d-flex me-3">
-            VSCode
-        </div>
-        <div class="d-flex me-3 fs-4 text-success">
-            Ubuntu
-        </div>
-        <div class="d-flex me-3 text-success">
-            schemes
-        </div>
-    </div>
-    <div class="d-flex align-items-end">
-        <div class="d-flex me-3 text-danger fs-4">
-            django
-        </div>
-        <div class="d-flex me-3">
-            Chrome
-        </div>
-        <div class="d-flex me-3">
-            perl
-        </div>
+    <div class="d-flex flex-wrap align-items-end mt-2 mb-3">
+        {% for tag in popular_tags %}
+            {% if tag.rating > 40 %}
+                <div class="d-flex me-5 mb-2 tag">
+                    <a class="tag-link link-danger super-popular-tag"
+                       href="{% url 'tag_page' name=tag %}">{{ tag }}</a>
+                </div>
+            {% elif tag.rating > 25 %}
+                <div class="d-flex me-5 mb-2 tag">
+                    <a class="tag-link link-warning popular-tag" href="{% url 'tag_page' name=tag %}">{{ tag }}</a>
+                </div>
+            {% elif tag.rating > 10 %}
+                <div class="d-flex me-5 mb-2 tag">
+                    <a class="tag-link link-success tag" href="{% url 'tag_page' name=tag %}">{{ tag }}</a>
+                </div>
+            {% else %}
+                <div class="d-flex me-5 mb-2 tag">
+                    <a class="tag-link link-dark common-tag" href="{% url 'tag_page' name=tag %}">{{ tag }}</a>
+                </div>
+            {% endif %}
+        {% endfor %}
     </div>
 </div>
 
 
-<div class="mt-5">
+<div class="mt-7">
     <span class="top-categories">Top Members</span>
-    <div class="mb-2 mt-3">
-        <a class="top-members isDisabled" href="#">Tim Roberts</a>
-    </div>
-    <div class="mb-2">
-        <a class="top-members isDisabled" href="#">unutbu</a>
-    </div>
-    <div class="mb-2">
-        <a class="top-members isDisabled" href="#">Alex Martelli</a>
-    </div>
-    <div class="mb-2">
-        <a class="top-members isDisabled" href="#">jezrael</a>
-    </div>
-    <div class="mb-2">
-        <a class="top-members isDisabled" href="#">Sven Marnach</a>
-    </div>
+    {% for member in best_members %}
+        <div class="mb-2 mt-1">
+            <a class="top-members isDisabled" href="#">{{ member.user_id }}</a>
+        </div>
+    {% endfor %}
 </div>

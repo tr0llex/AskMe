@@ -12,37 +12,6 @@ from django.views.decorators.http import require_POST
 
 from app.forms import *
 
-# # Temporary data generators
-# QUESTION_COUNT = 10
-# ANSWERS_COUNT = 4
-# from random import sample, randint
-#
-# questions = [
-#     {
-#         'id': idx,
-#         'title': f'Title number {idx}',
-#         'text': f'Some text for question #{idx}'
-#     } for idx in range(QUESTION_COUNT)
-# ]
-#
-# answers = [
-#     {
-#         'id': idx,
-#         'text': f'Some text for answer #{idx}'
-#     } for idx in range(ANSWERS_COUNT)
-# ]
-#
-# possible_tags = ['Javascript', 'Java', 'Python', 'C#', 'Php', 'Android', 'Html', 'Jquery', 'C++', 'Css', 'Ios', 'Mysql',
-#                  'Sql',
-#                  'Node.js', 'Arrays', 'Asp.net', 'Ruby-on-rails', 'Json', '.net', 'Sql-server', 'Reactjs', 'Swift',
-#                  'Objective-c']
-# tags = [{
-#     'tags': sample(possible_tags, randint(3, 5)),
-#     'tag_id': i
-# } for i in range(QUESTION_COUNT)]  # sample(tags, randint(3, 5)), "tag"
-#
-#
-# # END Temporary data generators
 
 def paginate(objects_list, request, per_page=10):
     paginator = Paginator(objects_list, per_page)
@@ -50,6 +19,7 @@ def paginate(objects_list, request, per_page=10):
     objects = paginator.get_page(page)
 
     return objects
+
 
 def index(request):
     questions = paginate(Question.objects.new_questions(), request)
@@ -59,6 +29,7 @@ def index(request):
     return render(request, 'index.html', {'questions': questions,
                                           'popular_tags': popular_tags,
                                           'best_members': best_members})
+
 
 def hot_questions(request):
     questions = paginate(Question.objects.hot_questions(), request)
@@ -77,15 +48,15 @@ def tag_questions(request, name):
         popular_tags = Tag.objects.popular_tags()
         best_members = Profile.objects.best_members()
 
-        return render(request, 'tag.html', {'tag': tag,
-                                            'questions': questions,
-                                            'popular_tags': popular_tags,
-                                            'best_members': best_members})
+        return render(request, 'tag_questions.html', {'tag': tag,
+                                                      'questions': questions,
+                                                      'popular_tags': popular_tags,
+                                                      'best_members': best_members})
     except Tag.DoesNotExist:
         raise Http404
 
 
-def one_question(request, pk):
+def question_page(request, pk):
     try:
         question = Question.objects.get(pk=pk)
         question_answers = paginate(Answer.objects.by_question(pk), request, 3)
@@ -99,7 +70,8 @@ def one_question(request, pk):
             if form.is_valid():
                 form.save()
                 answers_page = paginate(Answer.objects.by_question(pk), request)
-                return redirect(reverse('answers_for_questions', kwargs={'pk': pk}) + f"?page={answers_page.paginator.num_pages}")
+                return redirect(
+                    reverse('question_page', kwargs={'pk': pk}) + f"?page={answers_page.paginator.num_pages}")
 
         popular_tags = Tag.objects.popular_tags()
         best_members = Profile.objects.best_members()
@@ -113,8 +85,8 @@ def one_question(request, pk):
         raise Http404
 
 
-def login(request):
-    if (request.method == 'GET') :
+def login_view(request):
+    if (request.method == 'GET'):
         form = LoginForm()
     else:
         form = LoginForm(data=request.POST)
@@ -165,13 +137,13 @@ def ask_question(request):
         form = AskForm(request.user.profile, data=request.POST)
         if form.is_valid():
             question = form.save()
-            return redirect(reverse('answers_for_questions', kwargs={'pk': question.pk}))
+            return redirect(reverse('question_page', kwargs={'pk': question.pk}))
     popular_tags = Tag.objects.popular_tags()
     best_members = Profile.objects.best_members()
 
-    return render(request, 'ask.html', {'form': form,
-                                        'popular_tags': popular_tags,
-                                        'best_members': best_members})
+    return render(request, 'ask_question.html', {'form': form,
+                                                 'popular_tags': popular_tags,
+                                                 'best_members': best_members})
 
 
 @login_required
@@ -221,36 +193,3 @@ def is_correct(request):
     if Answer.objects.filter(question_id=answer.question_id, is_correct=True).count() < 3 or answer.is_correct:
         answer.change_flag_is_correct()
     return JsonResponse({'action': answer.is_correct})
-
-# def index(request):
-#     return render(request, 'index.html', {'questions': questions, "tags": sample(possible_tags, randint(3, 5))})
-
-
-# def hot_questions(request):
-#     return render(request, 'hot_questions.html', {'questions': questions, "tags": sample(possible_tags, randint(3, 5))})
-
-
-def one_question(request, pk):
-    question = questions[pk]
-    return render(request, 'question.html', {"question": question, "answers": questions, "tags": sample(possible_tags, randint(3, 5))})
-
-
-def ask_question(request):
-    return render(request, 'ask_question.html', {})
-
-
-# def tag_questions(request, tag):
-#     return render(request, 'tag_questions.html',
-#                   {"questions": questions, "tags": sample(possible_tags, randint(3, 5)), "tag": tag})
-
-
-# def login(request):
-#     return render(request, 'login.html', {})
-#
-#
-# def signup(request):
-#     return render(request, 'signup.html', {})
-#
-#
-# def settings(request):
-#     return render(request, 'settings.html', {})

@@ -1,34 +1,32 @@
+{% load static %}
+
 <div class="row question">
     <div style="margin-bottom: 30px">
         <span class="sort-categories">Sign into your account here</span>
     </div>
 
     <form class="needs-validation" novalidate>
+        {% csrf_token %}
+
+        {% for form_field in form %}
         <div class="d-flex ms-5 mb-3">
             <label for="inputLogin" class="col-sm-3 col-form-label col-form-label-lg"
-                   style="font-weight: 600;">Login</label>
+                   style="font-weight: 600;">{{ form_field.label }}</label>
             <div class="d-flex flex-column">
                 <div class="d-flex w-100 ms-3">
-                    <input type="text" class="form-control" placeholder="login" id="inputLogin" maxlength="15" required>
+                    {{ form_field }}
                 </div>
                 <div class="d-flex w-100 ms-3 invalid-feedback">
-                    Please enter username
+                    {{ form_field.errors }}
                 </div>
             </div>
         </div>
-        <div class="d-flex ms-5 mb-3">
-            <label for="inputPassword" class="col-sm-3 col-form-label col-form-label-lg"
-                   style="font-weight: 600;">Password</label>
-            <div class="d-flex flex-column">
-                <div class="d-flex w-100 ms-3">
-                    <input type="password" class="form-control" placeholder="password" id="inputPassword" maxlength="20"
-                           required>
-                </div>
-                <div class="d-flex w-100 ms-3 invalid-feedback">
-                    Please enter password
-                </div>
-            </div>
-        </div>
+        {% endfor %}
+
+        {% if request.GET.next %}
+        <input type="hidden" name="next" value="{{ request.GET.next }}">
+        {% endif %}
+
         <div class="d-flex ms-5 mb-3">
             <div class="col-sm-3"></div>
             <div class="d-flex ms-3">

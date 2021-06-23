@@ -1,9 +1,11 @@
 <div class="d-flex ms-1 mb-3 border-top border-2 border-dark pt-4">
-    <form class="d-flex flex-column w-100">
-        <div class="d-flex w-100">
-                <textarea class="form-control" rows="3" placeholder="Enter your answer" id="inputText"
-                          maxlength="1000"></textarea>
-        </div>
+    <form class="d-flex flex-column w-100" method="post">
+        {% csrf_token %}
+        {% if request.user.is_authenticated %}
+            <div class="d-flex w-100">
+                {{ form.text }}
+            </div>
+        {% endif %}
         <div class="d-flex justify-content-end mt-2">
             <button type="submit" class="btn btn-success btn-md">Answer</button>
         </div>
