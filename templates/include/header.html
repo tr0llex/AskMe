@@ -12,7 +12,8 @@
                     <input class="form-control me-2 search-input" type="search" placeholder="Search..."
                            aria-label="Search"/>
                 </form>
-                <button onclick="location.href='{% url "ask_question" %}'" type="button" class="btn btn-success ask-button">
+                <button onclick="location.href='{% url "ask_question" %}'" type="button"
+                        class="btn btn-success ask-button">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#637067" class="bi bi-pencil"
                          viewBox="0 0 20 20">
                         <path
@@ -23,11 +24,11 @@
                 </button>
             </div>
 
-                {% if request.user.is_authenticated %}
-            {% include "include/header_side_logged.html" %}
-                {% else %}
-            {% include "include/header_side_unlogged.html" %}
-                {% endif %}
+            {% if request.user.is_authenticated %}
+                {% include "include/header_side_logged.html" %}
+            {% else %}
+                {% include "include/header_side_unlogged.html" %}
+            {% endif %}
         </div>
     </nav>
 </header>

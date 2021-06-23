@@ -29,16 +29,16 @@
         {% endfor %}
 
         {% for avatar in ava %}
-        <div class="d-flex ms-5 mb-3">
-            <label for="inputAvatar" class="col-sm-2 col-form-label col-form-label-lg"
-                   style="font-weight: 600;">{{ avatar.label }}</label>
-            <div class="d-flex flex-column">
-                {{ avatar }}
-                <div class="d-flex w-100 ms-3 invalid-feedback">
-                    {{ avatar.errors }}
+            <div class="d-flex ms-5 mb-3">
+                <label for="inputAvatar" class="col-sm-2 col-form-label col-form-label-lg"
+                       style="font-weight: 600;">{{ avatar.label }}</label>
+                <div class="d-flex flex-column">
+                    {{ avatar }}
+                    <div class="d-flex w-100 ms-3 invalid-feedback">
+                        {{ avatar.errors }}
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
 
         <div class="d-flex mb-3 ms-5">

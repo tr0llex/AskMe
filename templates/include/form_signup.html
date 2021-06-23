@@ -8,22 +8,22 @@
 
         {% for form_field in form %}
 
-        <div class="d-flex ms-5 mb-3">
-            <label for="inputLogin" class="col-sm-3 col-form-label col-form-label-lg"
-                   style="font-weight: 600;">{{ form_field.label }}</label>
-            <div class="d-flex flex-column">
-                <div class="d-flex w-100 ms-3">
-                    {{ form_field }}
-                </div>
-                <div class="d-flex w-100 ms-3 invalid-feedback">
-                    {{ form_field.errors }}
+            <div class="d-flex ms-5 mb-3">
+                <label for="inputLogin" class="col-sm-3 col-form-label col-form-label-lg"
+                       style="font-weight: 600;">{{ form_field.label }}</label>
+                <div class="d-flex flex-column">
+                    <div class="d-flex w-100 ms-3">
+                        {{ form_field }}
+                    </div>
+                    <div class="d-flex w-100 ms-3 invalid-feedback">
+                        {{ form_field.errors }}
+                    </div>
                 </div>
             </div>
-        </div>
         {% endfor %}
 
         {% if request.GET.next %}
-        <input type="hidden" name="next" value="{{ request.GET.next }}">
+            <input type="hidden" name="next" value="{{ request.GET.next }}">
         {% endif %}
 
 

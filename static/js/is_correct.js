@@ -1,4 +1,4 @@
-$('.js-correct').click(function(ev) {
+$('.js-correct').click(function (ev) {
     let $this = $(this),
         id = $this.data('id');
     $.ajax('/correct/', {
@@ -6,7 +6,7 @@ $('.js-correct').click(function(ev) {
         data: {
             id: id,
         },
-    }).done(function(data) {
+    }).done(function (data) {
         $('#correct-' + id).prop('checked', data.action);
     });
     console.log("Correct is " + id);
